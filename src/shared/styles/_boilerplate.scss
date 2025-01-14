@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+
+  font-family: Inter, sans-serif;
+
+  background-image: url('/background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
