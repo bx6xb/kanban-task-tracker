@@ -1,0 +1,50 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 40px;
+
+  @media (width <= 1024px) {
+    max-width: 330px;
+    height: 30px;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+
+  @media (width <= 1024px) {
+    max-width: 20px;
+    height: 20px;
+  }
+}
+
+.search {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 0 64px;
+  border: 1px solid var(--search-border);
+  border-radius: 20px;
+
+  color: var(--text-regular);
+
+  background-color: var(--white-3);
+
+  &:hover {
+    border: 1px solid var(--blue);
+  }
+
+  &:focus-visible {
+    outline: 4px solid rgba(from var(--blue) r g b / 50%);
+  }
+
+  @media (width <= 1024px) {
+    padding-left: 54px;
+  }
+}

@@ -1,3 +1,11 @@
+import { TasksPage } from '@/pages'
+
+import { Providers } from './Providers'
+
 export function App() {
-  return <></>
+  return (
+    <Providers>
+      <TasksPage />
+    </Providers>
+  )
 }

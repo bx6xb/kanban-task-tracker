@@ -1,0 +1,15 @@
+.input {
+  width: 200px;
+  height: 22px;
+  padding-left: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+
+  color: var(--text-bold);
+
+  background-color: transparent;
+
+  &:hover {
+    border: 1px solid var(--blue);
+  }
+}

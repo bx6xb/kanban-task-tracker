@@ -1,0 +1,118 @@
+.options {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+
+  display: none;
+  gap: 16px;
+
+  @media (width <= 1440px) {
+    gap: 8px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (width <= 1024px) {
+    top: 12px;
+    right: 10px;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  @media (width <= 768px) {
+    display: flex;
+  }
+}
+
+.taskCard {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+  min-height: auto;
+  padding: 16px;
+  border-radius: 4px;
+
+  background-color: var(--white-2);
+
+  transition: 0.2s;
+
+  &:hover {
+    outline: 1px solid var(--blue);
+
+    .options {
+      display: flex;
+    }
+  }
+
+  @media (width <= 1024px) {
+    padding: 10px;
+  }
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8.5px;
+}
+
+.info {
+  display: flex;
+  gap: 16px;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-regular);
+  letter-spacing: -0.4px;
+
+  span {
+    font-weight: 700;
+    color: var(--text-bold);
+
+    &.expired {
+      color: var(--red);
+    }
+  }
+
+  @media (width <= 1440px) {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  @media (width <= 1024px) {
+    gap: 8px;
+    font-size: 8px;
+  }
+}
+
+.text {
+  word-break: break-word;
+}
+
+.editButtons {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    background-color: var(--white-3);
+  }
+}
