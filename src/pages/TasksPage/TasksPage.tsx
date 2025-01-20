@@ -1,10 +1,18 @@
+import { useEffect } from 'react'
+
+import { loadTasks } from '@/entities'
 import { Search, TaskColumn } from '@/feature'
-import { useAppSelector } from '@/shared'
+import { useAppDispatch, useAppSelector } from '@/shared'
 
 import s from './TasksPage.module.scss'
 
 export const TasksPage = () => {
   const tasks = useAppSelector(state => state.tasksState.tasks)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(loadTasks())
+  }, [dispatch])
 
   const tasksColumns = [
     {

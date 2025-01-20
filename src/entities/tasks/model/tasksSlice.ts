@@ -4,7 +4,7 @@ import { api } from '../api'
 import tasksData from './tasks.json'
 import { TaskType, TasksState } from './types'
 
-const initialState: TasksState = { tasks: tasksData as TaskType[] }
+const initialState: TasksState = { tasks: [] }
 
 export const tasksSlice = createSlice({
   initialState,
@@ -14,12 +14,20 @@ export const tasksSlice = createSlice({
       state.tasks = state.tasks.map(task =>
         task.id === action.payload.id ? { ...task, ...action.payload } : task
       )
+      api.saveTasks(state.tasks)
     },
     loadTasks(state) {
-      state.tasks = api.loadTasks()
+      const tasks = api.loadTasks()
+
+      if (tasks.length === 0) {
+        state.tasks = tasksData as TaskType[]
+      } else {
+        state.tasks = tasks
+      }
     },
     removeTask(state, action: PayloadAction<number>) {
       state.tasks = state.tasks.filter(task => task.id !== action.payload)
+      api.saveTasks(state.tasks)
     },
     saveTasks(state) {
       api.saveTasks(state.tasks)
