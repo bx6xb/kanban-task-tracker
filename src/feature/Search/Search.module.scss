@@ -19,6 +19,8 @@
   width: 24px;
   height: 24px;
 
+  fill: var(--text-regular);
+
   @media (width <= 1024px) {
     max-width: 20px;
     height: 20px;
@@ -35,6 +37,8 @@
   color: var(--text-regular);
 
   background-color: var(--white-3);
+
+  transition: var(--transition);
 
   &:hover {
     border: 1px solid var(--blue);

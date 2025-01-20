@@ -30,6 +30,20 @@
   }
 }
 
+.edit,
+.trash {
+  fill: var(--icon-color);
+  transition: var(--transition);
+}
+
+.edit:hover {
+  fill: var(--blue);
+}
+
+.trash:hover {
+  fill: var(--red);
+}
+
 .taskCard {
   position: relative;
 
@@ -44,7 +58,7 @@
 
   background-color: var(--white-2);
 
-  transition: 0.2s;
+  transition: var(--transition);
 
   &:hover {
     outline: 1px solid var(--blue);
@@ -114,5 +128,29 @@
     border-radius: 50%;
 
     background-color: var(--white-3);
+
+    transition: var(--transition);
+
+    &:hover {
+      background-color: var(--white-1);
+    }
+
+    @media (width <= 1024px) {
+      width: 35px;
+      height: 35px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
+}
+
+.cross {
+  fill: var(--icon-color);
+}
+
+.check {
+  fill: var(--blue);
 }

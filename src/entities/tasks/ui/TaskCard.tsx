@@ -75,12 +75,12 @@ export const TaskCard = ({ endDay, id, isEditable, startDay, text, type }: Props
         <div className={s.options}>
           {isEditable && (
             <button onClick={toggleEditMode} type={'button'}>
-              <Icon height={18} id={'edit'} width={18} />
+              <Icon className={s.edit} height={18} id={'edit'} width={18} />
             </button>
           )}
 
           <button onClick={removeTaskCallback} type={'button'}>
-            <Icon height={18} id={'trash'} width={18} />
+            <Icon className={s.trash} height={18} id={'trash'} width={18} />
           </button>
         </div>
       )}
@@ -88,11 +88,11 @@ export const TaskCard = ({ endDay, id, isEditable, startDay, text, type }: Props
       {isEditMode && (
         <div className={s.editButtons}>
           <button onClick={toggleEditMode} type={'button'}>
-            <Icon height={24} id={'cross'} width={24} />
+            <Icon className={s.cross} height={24} id={'cross'} width={24} />
           </button>
 
           <button onClick={editTaskCallback} type={'button'}>
-            <Icon height={24} id={'check'} width={24} />
+            <Icon className={s.check} height={24} id={'check'} width={24} />
           </button>
         </div>
       )}

@@ -1,5 +1,7 @@
 :root {
+  // colors
   --text-bold: rgba(from #fff r g b / 87%);
+  --icon-color: rgba(from #fff r g b / 80%);
   --text-regular: rgba(from #fff r g b / 60%);
   --input-border: rgba(from #fff r g b / 50%);
   --search-border: rgba(from #fff r g b / 30%);
@@ -9,4 +11,7 @@
   --black: rgba(from #000 r g b / 70%);
   --red: rgba(from #fc3639e5 r g b / 60%);
   --blue: #0184cf;
+
+  // other variables
+  --transition: 0.2s;
 }
