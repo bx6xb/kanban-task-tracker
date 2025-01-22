@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { formatDate } from '@/shared'
 
-import s from './TaskCard.module.scss'
+import './TaskCard.scss'
 
 import { TaskType } from '../model'
 import { TaskForm } from './TaskForm'
@@ -20,7 +20,7 @@ export const TaskCard = ({ endDay, id, isEditable, startDay, text, type }: TaskC
   const onSubmit = () => toggleEditMode()
 
   return (
-    <div className={s.taskCard}>
+    <div className={'taskCard'}>
       {isEditMode ? (
         <TaskForm
           endDay={formatDate(endDay)}

@@ -23,26 +23,26 @@ export const TaskInfo = ({
 
   return (
     <>
-      <div className={s.rowContainer}>
-        <div className={s.row}>
+      <div className={'rowContainer'}>
+        <div className={'row'}>
           Начало:
           <span>{formatDate(startDay)}</span>
         </div>
 
-        <div className={s.row}>
+        <div className={'row'}>
           Окончание:
           <span className={clsx(isDateExpired(endDay) && type !== 'done' && s.expired)}>
             {formatDate(endDay)}
           </span>
         </div>
 
-        <div className={s.row}>
+        <div className={'row'}>
           Описание:
           <span className={s.text}>{text}</span>
         </div>
       </div>
 
-      <div className={s.options}>
+      <div className={'options'}>
         {isEditable && (
           <button onClick={toggleEditMode} type={'button'}>
             <Icon className={s.edit} height={18} id={'edit'} width={18} />

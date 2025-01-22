@@ -1,0 +1,94 @@
+.options {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+
+  display: none;
+  gap: 16px;
+
+  @media (width <= 1440px) {
+    gap: 8px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (width <= 1024px) {
+    top: 12px;
+    right: 10px;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  @media (width <= 768px) {
+    display: flex;
+  }
+}
+
+.taskCard {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+  min-height: auto;
+  padding: 16px;
+  border-radius: 4px;
+
+  background-color: var(--white-2);
+
+  transition: var(--transition);
+
+  &:hover {
+    outline: 1px solid var(--blue);
+
+    .options {
+      display: flex;
+    }
+  }
+
+  @media (width <= 1024px) {
+    padding: 10px;
+  }
+}
+
+.rowContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8.5px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+
+  font-size: 14px;
+  color: var(--text-regular);
+  letter-spacing: -0.4px;
+
+  span {
+    font-weight: 700;
+    color: var(--text-bold);
+
+    &.expired {
+      color: var(--red);
+    }
+  }
+
+  @media (width <= 1440px) {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  @media (width <= 1024px) {
+    gap: 8px;
+    font-size: 8px;
+  }
+}

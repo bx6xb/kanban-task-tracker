@@ -55,20 +55,20 @@ export const TaskForm = ({ endDay, id, onCrossClick, onSubmit, startDay, text }:
 
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
-      <div className={s.rowContainer}>
-        <label className={s.row}>
+      <div className={'rowContainer'}>
+        <label className={'row'}>
           Начало:
           <input {...register('startDay')} className={clsx(s.input, startDayError && s.error)} />
         </label>
         {!!startDayError && <span className={s.errorMessage}>{startDayError}</span>}
 
-        <label className={s.row}>
+        <label className={'row'}>
           Окончание:
           <input {...register('endDay')} className={clsx(s.input, endDayError && s.error)} />
         </label>
         {!!endDayError && <span className={s.errorMessage}>{endDayError}</span>}
 
-        <label className={s.row}>
+        <label className={'row'}>
           Описание:
           <input {...register('text')} className={s.input} />
         </label>
