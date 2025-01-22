@@ -1,0 +1,51 @@
+@use '../sharedStyles.module' as *;
+
+.text {
+  word-break: break-word;
+}
+
+.options {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+
+  display: flex;
+  gap: 16px;
+
+  @media (width <= 1440px) {
+    gap: 8px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (width <= 1024px) {
+    top: 12px;
+    right: 10px;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  @media (width <= 768px) {
+    display: flex;
+  }
+}
+
+.edit,
+.trash {
+  fill: var(--icon-color);
+  transition: var(--transition);
+}
+
+.edit:hover {
+  fill: var(--blue);
+}
+
+.trash:hover {
+  fill: var(--red);
+}

@@ -1,0 +1,34 @@
+.rowContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8.5px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-regular);
+  letter-spacing: -0.4px;
+
+  span {
+    font-weight: 700;
+    color: var(--text-bold);
+
+    &.expired {
+      color: var(--red);
+    }
+  }
+
+  @media (width <= 1440px) {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  @media (width <= 1024px) {
+    gap: 8px;
+    font-size: 8px;
+  }
+}

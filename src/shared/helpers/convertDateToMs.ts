@@ -1,4 +1,4 @@
-export const convertToMilliseconds = (date: string): number => {
+export const convertDateToMs = (date: string): number => {
   const [day, month, year] = date.split('.')
   const rormatedDate = `${year}.${month}.${day}`
   const dateObject = new Date(rormatedDate)
