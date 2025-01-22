@@ -4,7 +4,7 @@ import { api } from '../api'
 import tasksData from './tasks.json'
 import { TaskType, TasksState } from './types'
 
-const initialState: TasksState = { tasks: [] }
+const initialState: TasksState = { searchTerm: '', tasks: [] }
 
 export const tasksSlice = createSlice({
   initialState,
@@ -32,7 +32,10 @@ export const tasksSlice = createSlice({
     saveTasks(state) {
       api.saveTasks(state.tasks)
     },
+    setSearchTerm(state, action: PayloadAction<string>) {
+      state.searchTerm = action.payload
+    },
   },
 })
 
-export const { editTask, loadTasks, removeTask, saveTasks } = tasksSlice.actions
+export const { editTask, loadTasks, removeTask, saveTasks, setSearchTerm } = tasksSlice.actions

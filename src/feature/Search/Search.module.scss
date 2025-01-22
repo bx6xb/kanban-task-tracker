@@ -1,3 +1,20 @@
+@mixin icon($position, $value) {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 24px;
+  height: 24px;
+
+  fill: var(--text-regular);
+  #{$position}: $value;
+
+  @media (width <= 1024px) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .container {
   position: relative;
   width: 100%;
@@ -10,27 +27,14 @@
   }
 }
 
-.icon {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
-
-  width: 24px;
-  height: 24px;
-
-  fill: var(--text-regular);
-
-  @media (width <= 1024px) {
-    max-width: 20px;
-    height: 20px;
-  }
+.searchIcon {
+  @include icon(left, 20px);
 }
 
-.search {
+.input {
   width: 100%;
   height: 100%;
-  padding: 0 20px 0 64px;
+  padding: 0 60px 0 64px;
   border: 1px solid var(--search-border);
   border-radius: 20px;
 
@@ -51,4 +55,8 @@
   @media (width <= 1024px) {
     padding-left: 54px;
   }
+}
+
+.cross {
+  @include icon(right, 20px);
 }

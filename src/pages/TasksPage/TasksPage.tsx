@@ -2,38 +2,46 @@ import { useEffect } from 'react'
 
 import { loadTasks } from '@/entities'
 import { Search, TaskColumn } from '@/feature'
-import { useAppDispatch, useAppSelector } from '@/shared'
+import { formatDate, useAppDispatch, useAppSelector } from '@/shared'
 
 import s from './TasksPage.module.scss'
 
 export const TasksPage = () => {
-  const tasks = useAppSelector(state => state.tasksState.tasks)
+  const { searchTerm, tasks } = useAppSelector(state => state.tasksState)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(loadTasks())
   }, [dispatch])
 
+  const filteredBySearchTermTasks = tasks.filter(task => {
+    return (
+      task.text.match(new RegExp(searchTerm, 'g')) ||
+      formatDate(task.startDay).match(new RegExp(searchTerm, 'g')) ||
+      formatDate(task.endDay).match(new RegExp(searchTerm, 'g'))
+    )
+  })
+
   const tasksColumns = [
     {
       iconId: 'happy',
       isAddable: true,
-      tasks: tasks.filter(task => task.type === 'todo'),
+      tasks: filteredBySearchTermTasks.filter(task => task.type === 'todo'),
       title: 'To Do',
     },
     {
       iconId: 'smile',
-      tasks: tasks.filter(task => task.type === 'in_progress'),
+      tasks: filteredBySearchTermTasks.filter(task => task.type === 'in_progress'),
       title: 'In Progress',
     },
     {
       iconId: 'upside-down',
-      tasks: tasks.filter(task => task.type === 'review'),
+      tasks: filteredBySearchTermTasks.filter(task => task.type === 'review'),
       title: 'Review',
     },
     {
       iconId: 'ghost',
-      tasks: tasks.filter(task => task.type === 'done'),
+      tasks: filteredBySearchTermTasks.filter(task => task.type === 'done'),
       title: 'Done',
     },
   ]
