@@ -2,10 +2,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-
   width: 24px;
   height: 24px;
-
   fill: var(--text-regular);
   #{$position}: $value;
 
@@ -37,11 +35,8 @@
   padding: 0 60px 0 64px;
   border: 1px solid var(--search-border);
   border-radius: 20px;
-
   color: var(--text-regular);
-
   background-color: var(--white-3);
-
   transition: var(--transition);
 
   &:hover {

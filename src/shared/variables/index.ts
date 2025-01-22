@@ -1,2 +1,2 @@
-export * from './dateRegex'
-export * from './taskFormErrorMessages'
+export * from "./dateRegex";
+export * from "./taskFormErrorMessages";

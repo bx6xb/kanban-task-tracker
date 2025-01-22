@@ -1,1 +1,1 @@
-export * from './reduxTypes'
+export * from "./reduxTypes";

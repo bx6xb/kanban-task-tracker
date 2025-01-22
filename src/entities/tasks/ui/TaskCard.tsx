@@ -1,26 +1,30 @@
-import { useState } from 'react'
-
-import { formatDate } from '@/shared'
-
-import './TaskCard.scss'
-
-import { TaskType } from '../model'
-import { TaskForm } from './TaskForm'
-import { TaskInfo } from './TaskInfo'
+import { useState } from "react";
+import "./TaskCard.scss";
+import { TaskType } from "../model";
+import { TaskForm } from "./TaskForm";
+import { TaskInfo } from "./TaskInfo";
+import { formatDate } from "../../../shared";
 
 export type TaskCardProps = {
-  isEditable?: boolean
-} & TaskType
+  isEditable?: boolean;
+} & TaskType;
 
-export const TaskCard = ({ endDay, id, isEditable, startDay, text, type }: TaskCardProps) => {
-  const [isEditMode, setIsEditMode] = useState(false)
+export const TaskCard = ({
+  endDay,
+  id,
+  isEditable,
+  startDay,
+  text,
+  type,
+}: TaskCardProps) => {
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  const toggleEditMode = () => setIsEditMode(!isEditMode)
+  const toggleEditMode = () => setIsEditMode(!isEditMode);
 
-  const onSubmit = () => toggleEditMode()
+  const onSubmit = () => toggleEditMode();
 
   return (
-    <div className={'taskCard'}>
+    <div className={"taskCard"}>
       {isEditMode ? (
         <TaskForm
           endDay={formatDate(endDay)}
@@ -42,5 +46,5 @@ export const TaskCard = ({ endDay, id, isEditable, startDay, text, type }: TaskC
         />
       )}
     </div>
-  )
-}
+  );
+};

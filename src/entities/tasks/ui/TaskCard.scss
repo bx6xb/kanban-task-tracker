@@ -2,7 +2,6 @@
   position: absolute;
   top: 18px;
   right: 16px;
-
   display: none;
   gap: 16px;
 
@@ -32,18 +31,14 @@
 
 .taskCard {
   position: relative;
-
   display: flex;
   flex-direction: column;
   gap: 8px;
-
   width: 100%;
   min-height: auto;
   padding: 16px;
   border-radius: 4px;
-
   background-color: var(--white-2);
-
   transition: var(--transition);
 
   &:hover {
@@ -68,7 +63,6 @@
 .row {
   display: flex;
   gap: 16px;
-
   font-size: 14px;
   color: var(--text-regular);
   letter-spacing: -0.4px;
