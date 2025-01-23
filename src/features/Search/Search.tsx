@@ -1,5 +1,5 @@
-import { ChangeEvent } from "react";
 import s from "./Search.module.scss";
+import { ChangeEvent } from "react";
 import { Icon, useAppDispatch, useAppSelector } from "../../shared";
 import { setSearchTerm } from "../../entities";
 

@@ -1,6 +1,6 @@
-import { TaskCard, TaskType } from "../../entities";
-import { Icon } from "../../shared";
 import s from "./TaskColumn.module.scss";
+import { TaskCard, TaskType } from "../../../entities";
+import { Icon } from "../../../shared";
 
 type Props = {
   iconId: string;
@@ -16,7 +16,7 @@ export const TaskColumn = ({ iconId, isAddable, tasks, title }: Props) => {
     <div className={s.taskColumn}>
       <div className={s.header}>
         <div className={s.title}>
-          <Icon height={24} id={iconId} width={24} />
+          <Icon className={s.icon} id={iconId} />
           {title}
         </div>
 
@@ -30,8 +30,8 @@ export const TaskColumn = ({ iconId, isAddable, tasks, title }: Props) => {
           sortedTasks.map(task => (
             <TaskCard
               isEditable={task.type === "todo"}
-              {...task}
               key={task.id}
+              {...task}
             />
           ))
         )}

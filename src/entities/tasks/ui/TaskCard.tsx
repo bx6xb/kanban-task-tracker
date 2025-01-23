@@ -1,22 +1,14 @@
-import { useState } from "react";
 import "./TaskCard.scss";
+import { useState } from "react";
 import { TaskType } from "../model";
 import { TaskForm } from "./TaskForm";
 import { TaskInfo } from "./TaskInfo";
-import { formatDate } from "../../../shared";
 
 export type TaskCardProps = {
   isEditable?: boolean;
 } & TaskType;
 
-export const TaskCard = ({
-  endDay,
-  id,
-  isEditable,
-  startDay,
-  text,
-  type,
-}: TaskCardProps) => {
+export const TaskCard = ({ isEditable, ...task }: TaskCardProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
@@ -27,22 +19,15 @@ export const TaskCard = ({
     <div className={"taskCard"}>
       {isEditMode ? (
         <TaskForm
-          endDay={formatDate(endDay)}
-          id={id}
           onCrossClick={() => setIsEditMode(false)}
           onSubmit={onSubmit}
-          startDay={formatDate(startDay)}
-          text={text}
+          {...task}
         />
       ) : (
         <TaskInfo
-          endDay={endDay}
-          id={id}
           isEditable={isEditable}
-          startDay={startDay}
-          text={text}
           toggleEditMode={toggleEditMode}
-          type={type}
+          {...task}
         />
       )}
     </div>

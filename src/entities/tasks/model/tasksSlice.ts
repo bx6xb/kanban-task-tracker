@@ -9,10 +9,11 @@ export const tasksSlice = createSlice({
   initialState,
   name: "tasksState",
   reducers: {
-    editTask(state, action: PayloadAction<Omit<TaskType, "type">>) {
+    editTask(state, action: PayloadAction<TaskType>) {
       state.tasks = state.tasks.map(task =>
-        task.id === action.payload.id ? { ...task, ...action.payload } : task
+        task.id === action.payload.id ? { ...action.payload } : task
       );
+
       api.saveTasks(state.tasks);
     },
     loadTasks(state) {

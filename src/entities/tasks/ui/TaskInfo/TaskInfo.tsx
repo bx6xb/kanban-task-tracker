@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import s from "./TaskInfo.module.scss";
+import clsx from "clsx";
 import { removeTask } from "../../model";
 import { TaskCardProps } from "../TaskCard";
 import {
@@ -23,10 +23,6 @@ export const TaskInfo = ({
   const dispatch = useAppDispatch();
 
   const removeTaskCallback = () => dispatch(removeTask(id));
-
-  if (formatDate(endDay) === "20.11.2023") {
-    console.log(formatDate(endDay), isDateExpired(endDay) && type !== "done");
-  }
 
   return (
     <>

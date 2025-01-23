@@ -1,3 +1,4 @@
-export * from "./convertDateToMs/convertDateToMs";
-export * from "./formatDate/formatDate";
-export * from "./isDateExpired/isDateExpired";
+export * from "./convertDateToMs";
+export * from "./formatDate";
+export * from "./isDateExpired";
+export * from "./isAnySearchTermMatch";

@@ -3,7 +3,7 @@
   "name": "Kanban Task Tracker",
   "icons": [
     {
-      "src": "favicon.png",
+      "src": "images/favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     }

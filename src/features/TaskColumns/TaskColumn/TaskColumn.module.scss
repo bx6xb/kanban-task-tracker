@@ -39,6 +39,21 @@
   }
 }
 
+.icon {
+  width: 24px;
+  height: 24px;
+
+  @media (width <= 1440px) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (width <= 768px) {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 .add {
   cursor: pointer;
   font-size: 14px;

@@ -1,10 +1,15 @@
+import s from "./TaskForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import s from "./TaskForm.module.scss";
-import { editTask } from "../../model";
-import { taskFormSchema } from "./validation";
-import { convertDateToMs, Icon, useAppDispatch } from "../../../../shared";
+import { editTask, TaskType, taskFormSchema } from "../../model";
+import {
+  convertDateToMs,
+  formatDate,
+  Icon,
+  Input,
+  useAppDispatch,
+} from "../../../../shared";
 
 type FormValues = {
   endDay: string;
@@ -13,10 +18,9 @@ type FormValues = {
 };
 
 type Props = {
-  id: number;
   onCrossClick(): void;
   onSubmit(): void;
-} & FormValues;
+} & TaskType;
 
 export const TaskForm = ({
   endDay,
@@ -25,21 +29,22 @@ export const TaskForm = ({
   onSubmit,
   startDay,
   text,
+  type,
 }: Props) => {
-  const dispatch = useAppDispatch();
-
   const {
     formState: { errors },
     handleSubmit,
     register,
   } = useForm<FormValues>({
     defaultValues: {
-      endDay,
-      startDay,
+      endDay: formatDate(endDay),
+      startDay: formatDate(startDay),
       text,
     },
     resolver: zodResolver(taskFormSchema),
   });
+
+  const dispatch = useAppDispatch();
 
   const onSubmitHandler: SubmitHandler<FormValues> = ({
     endDay,
@@ -52,6 +57,7 @@ export const TaskForm = ({
         id,
         startDay: convertDateToMs(startDay),
         text,
+        type,
       })
     );
 
@@ -66,7 +72,7 @@ export const TaskForm = ({
       <div className={"rowContainer"}>
         <label className={"row"}>
           Начало:
-          <input
+          <Input
             {...register("startDay")}
             className={clsx(s.input, startDayError && s.error)}
           />
@@ -77,7 +83,7 @@ export const TaskForm = ({
 
         <label className={"row"}>
           Окончание:
-          <input
+          <Input
             {...register("endDay")}
             className={clsx(s.input, endDayError && s.error)}
           />
@@ -86,7 +92,7 @@ export const TaskForm = ({
 
         <label className={"row"}>
           Описание:
-          <input {...register("text")} className={s.input} />
+          <Input {...register("text")} className={s.input} />
         </label>
       </div>
 
