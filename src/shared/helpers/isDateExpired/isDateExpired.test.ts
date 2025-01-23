@@ -13,3 +13,10 @@ test('date should not be expired', () => {
 
   expect(condition).toBeFalsy()
 })
+
+test('if deadline is today it should also be expired', () => {
+  const ms = new Date().getTime()
+  const condition = isDateExpired(ms)
+
+  expect(condition).toBeTruthy()
+})
