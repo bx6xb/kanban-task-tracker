@@ -52,7 +52,7 @@ export const TaskForm = ({
         id,
         startDay: convertDateToMs(startDay),
         text,
-      }),
+      })
     );
 
     onSubmit();

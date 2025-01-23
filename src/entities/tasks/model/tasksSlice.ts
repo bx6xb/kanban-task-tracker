@@ -10,8 +10,8 @@ export const tasksSlice = createSlice({
   name: "tasksState",
   reducers: {
     editTask(state, action: PayloadAction<Omit<TaskType, "type">>) {
-      state.tasks = state.tasks.map((task) =>
-        task.id === action.payload.id ? { ...task, ...action.payload } : task,
+      state.tasks = state.tasks.map(task =>
+        task.id === action.payload.id ? { ...task, ...action.payload } : task
       );
       api.saveTasks(state.tasks);
     },
@@ -25,7 +25,7 @@ export const tasksSlice = createSlice({
       }
     },
     removeTask(state, action: PayloadAction<number>) {
-      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+      state.tasks = state.tasks.filter(task => task.id !== action.payload);
       api.saveTasks(state.tasks);
     },
     saveTasks(state) {

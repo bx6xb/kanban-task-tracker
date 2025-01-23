@@ -1,1 +1,1 @@
-export * from './isDateExpired'
+export * from "./isDateExpired";

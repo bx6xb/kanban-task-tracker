@@ -4,7 +4,7 @@ import { Icon, useAppDispatch, useAppSelector } from "../../shared";
 import { setSearchTerm } from "../../entities";
 
 export const Search = () => {
-  const searchTerm = useAppSelector((state) => state.tasksState.searchTerm);
+  const searchTerm = useAppSelector(state => state.tasksState.searchTerm);
   const dispatch = useAppDispatch();
 
   const onValueChange = (e: ChangeEvent<HTMLInputElement>) =>

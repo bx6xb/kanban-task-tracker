@@ -1,1 +1,1 @@
-export * from './convertDateToMs'
+export * from "./convertDateToMs";
