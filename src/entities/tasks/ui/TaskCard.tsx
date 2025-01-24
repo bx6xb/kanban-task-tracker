@@ -3,12 +3,14 @@ import { useState } from "react";
 import { TaskType } from "../model";
 import { TaskForm } from "./TaskForm";
 import { TaskInfo } from "./TaskInfo";
+import { Draggable } from "react-beautiful-dnd";
 
-export type TaskCardProps = {
+type Props = {
+  index: number;
   isEditable?: boolean;
 } & TaskType;
 
-export const TaskCard = ({ isEditable, ...task }: TaskCardProps) => {
+export const TaskCard = ({ isEditable, index, ...task }: Props) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
@@ -16,20 +18,30 @@ export const TaskCard = ({ isEditable, ...task }: TaskCardProps) => {
   const onSubmit = () => toggleEditMode();
 
   return (
-    <div className={"taskCard"}>
-      {isEditMode ? (
-        <TaskForm
-          onCrossClick={() => setIsEditMode(false)}
-          onSubmit={onSubmit}
-          {...task}
-        />
-      ) : (
-        <TaskInfo
-          isEditable={isEditable}
-          toggleEditMode={toggleEditMode}
-          {...task}
-        />
+    <Draggable draggableId={task.id.toString()} index={index}>
+      {({ dragHandleProps, draggableProps, innerRef }) => (
+        <div
+          className={"taskCard"}
+          ref={innerRef}
+          {...draggableProps}
+          {...dragHandleProps}
+          style={{ ...draggableProps.style }}
+        >
+          {isEditMode ? (
+            <TaskForm
+              onCrossClick={() => setIsEditMode(false)}
+              onSubmit={onSubmit}
+              {...task}
+            />
+          ) : (
+            <TaskInfo
+              isEditable={isEditable}
+              toggleEditMode={toggleEditMode}
+              {...task}
+            />
+          )}
+        </div>
       )}
-    </div>
+    </Draggable>
   );
 };

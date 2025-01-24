@@ -1,7 +1,6 @@
 import s from "./TaskInfo.module.scss";
 import clsx from "clsx";
-import { removeTask } from "../../model";
-import { TaskCardProps } from "../TaskCard";
+import { removeTask, TaskType } from "../../model";
 import {
   formatDate,
   Icon,
@@ -9,7 +8,10 @@ import {
   useAppDispatch,
 } from "../../../../shared";
 
-type Props = { toggleEditMode(): void } & TaskCardProps;
+type Props = {
+  isEditable?: boolean;
+  toggleEditMode(): void;
+} & TaskType;
 
 export const TaskInfo = ({
   endDay,
