@@ -10,28 +10,28 @@
   align-items: center;
   z-index: 999;
   opacity: 1;
-  transition: 1s linear;
+  transition: opacity 1s linear;
 
   &.hidden {
     opacity: 0;
     pointer-events: none;
   }
-
-  &::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 50px;
-    border: 5px solid var(--blue);
-    animation: spin 2s linear infinite;
-  }
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+.image {
+  width: 50px;
+  height: 50px;
+  animation: bounce 1.5s linear infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }

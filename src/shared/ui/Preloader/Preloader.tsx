@@ -6,5 +6,9 @@ type Props = {
 };
 
 export const Preloader = ({ isHidden }: Props) => {
-  return <div className={clsx(s.preloader, isHidden && s.hidden)} />;
+  return (
+    <div className={clsx(s.preloader, isHidden && s.hidden)}>
+      <img src="/images/favicon.png" alt="preloader" className={s.image} />
+    </div>
+  );
 };
