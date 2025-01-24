@@ -2,7 +2,7 @@ import s from "./TaskForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { editTask, TaskType, taskFormSchema } from "../../model";
+import { editTask, TaskType, taskFormSchema, removeTask } from "../../model";
 import {
   convertDateToMs,
   formatDate,
@@ -64,6 +64,10 @@ export const TaskForm = ({
     onSubmit();
   };
 
+  const removeTaskCallback = () => {
+    dispatch(removeTask(id));
+  };
+
   const startDayError = errors.startDay?.message;
   const endDayError = errors.endDay?.message;
 
@@ -97,7 +101,10 @@ export const TaskForm = ({
       </div>
 
       <div className={s.editButtons}>
-        <button onClick={onCrossClick} type={"button"}>
+        <button
+          onClick={id === 0 ? removeTaskCallback : onCrossClick}
+          type={"button"}
+        >
           <Icon className={s.cross} height={24} id={"cross"} width={24} />
         </button>
 

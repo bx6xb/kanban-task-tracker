@@ -11,7 +11,12 @@ export const tasksSlice = createSlice({
   reducers: {
     editTask(state, action: PayloadAction<TaskType>) {
       state.tasks = state.tasks.map(task =>
-        task.id === action.payload.id ? { ...action.payload } : task
+        task.id === action.payload.id
+          ? {
+              ...action.payload,
+              id: task.id || state.tasks.length + 1,
+            }
+          : task
       );
 
       api.saveTasks(state.tasks);
@@ -35,8 +40,23 @@ export const tasksSlice = createSlice({
     setSearchTerm(state, action: PayloadAction<string>) {
       state.searchTerm = action.payload;
     },
+    addTask(state) {
+      state.tasks.push({
+        id: 0,
+        type: "todo",
+        startDay: new Date().getTime(),
+        endDay: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
+        text: "~Ваше описание~",
+      });
+    },
   },
 });
 
-export const { editTask, loadTasks, removeTask, saveTasks, setSearchTerm } =
-  tasksSlice.actions;
+export const {
+  editTask,
+  loadTasks,
+  removeTask,
+  saveTasks,
+  setSearchTerm,
+  addTask,
+} = tasksSlice.actions;

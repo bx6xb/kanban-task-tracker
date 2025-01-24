@@ -11,7 +11,7 @@ type Props = {
 } & TaskType;
 
 export const TaskCard = ({ isEditable, index, ...task }: Props) => {
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(task.id === 0);
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
 
@@ -23,9 +23,9 @@ export const TaskCard = ({ isEditable, index, ...task }: Props) => {
         <div
           className={"taskCard"}
           ref={innerRef}
+          style={{ ...draggableProps.style }}
           {...draggableProps}
           {...dragHandleProps}
-          style={{ ...draggableProps.style }}
         >
           {isEditMode ? (
             <TaskForm
