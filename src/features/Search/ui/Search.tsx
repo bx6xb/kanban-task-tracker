@@ -1,7 +1,7 @@
 import s from "./Search.module.scss";
 import { ChangeEvent } from "react";
-import { Icon, useAppDispatch, useAppSelector } from "../../shared";
-import { setSearchTerm } from "../../entities";
+import { Icon, useAppDispatch, useAppSelector } from "../../../shared";
+import { setSearchTerm } from "../../../entities";
 
 export const Search = () => {
   const searchTerm = useAppSelector(state => state.tasksState.searchTerm);

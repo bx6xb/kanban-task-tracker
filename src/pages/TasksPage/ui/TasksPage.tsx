@@ -1,8 +1,8 @@
 import s from "./TasksPage.module.scss";
 import { useEffect } from "react";
-import { useAppDispatch } from "../../shared";
-import { loadTasks } from "../../entities";
-import { Search, TaskColumns } from "../../features";
+import { useAppDispatch } from "../../../shared";
+import { loadTasks } from "../../../entities";
+import { Search, TaskColumns } from "../../../features";
 
 export const TasksPage = () => {
   const dispatch = useAppDispatch();

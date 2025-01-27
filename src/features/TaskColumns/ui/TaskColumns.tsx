@@ -5,10 +5,10 @@ import {
   isAnySearchTermMatch,
   useAppDispatch,
   useAppSelector,
-} from "../../shared";
+} from "../../../shared";
 import { TaskColumn } from "./TaskColumn";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { editTask, TaskTypeValues } from "../../entities";
+import { editTask, TaskTypeValues } from "../../../entities";
 
 export const TaskColumns = () => {
   const { searchTerm, tasks } = useAppSelector(state => state.tasksState);

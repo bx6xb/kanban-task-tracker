@@ -1,6 +1,6 @@
 import s from "./TaskColumn.module.scss";
-import { addTask, TaskCard } from "../../../entities";
-import { ColumnData, Icon, useAppDispatch } from "../../../shared";
+import { addTask, TaskCard } from "../../../../entities";
+import { ColumnData, Icon, useAppDispatch } from "../../../../shared";
 import { Droppable } from "react-beautiful-dnd";
 import clsx from "clsx";
 
