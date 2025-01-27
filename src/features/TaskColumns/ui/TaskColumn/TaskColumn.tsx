@@ -11,14 +11,6 @@ export const TaskColumn = ({ iconId, isAddable, tasks, title, id }: Props) => {
 
   const addTaskCallback = () => dispatch(addTask());
 
-  const sortedTasks = tasks.sort((a, b) => {
-    if (a.id === 0 || b.id === 0) {
-      return -1;
-    }
-
-    return a.startDay - b.startDay;
-  });
-
   const isNewTaskExist = tasks.some(task => task.id === 0);
 
   return (
@@ -42,10 +34,10 @@ export const TaskColumn = ({ iconId, isAddable, tasks, title, id }: Props) => {
           </div>
 
           <div className={s.tasks}>
-            {sortedTasks.length === 0 ? (
+            {tasks.length === 0 ? (
               <h3 className={s.nothingToShow}>Nothing to show</h3>
             ) : (
-              sortedTasks.map((task, index) => (
+              tasks.map((task, index) => (
                 <TaskCard
                   index={index}
                   isEditable={task.type === "todo"}

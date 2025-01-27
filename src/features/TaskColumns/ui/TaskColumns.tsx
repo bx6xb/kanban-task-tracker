@@ -1,6 +1,5 @@
 import s from "./TaskColumns.module.scss";
 import {
-  ColumnData,
   formatDate,
   isAnySearchTermMatch,
   useAppDispatch,
@@ -9,50 +8,29 @@ import {
 import { TaskColumn } from "./TaskColumn";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { editTask, TaskTypeValues } from "../../../entities";
+import { tasksColumns } from "../model";
 
 export const TaskColumns = () => {
   const { searchTerm, tasks } = useAppSelector(state => state.tasksState);
 
   const dispatch = useAppDispatch();
 
-  const filteredBySearchTermTasks = tasks.filter(({ text, startDay, endDay }) =>
-    isAnySearchTermMatch(
-      [text, formatDate(startDay), formatDate(endDay)],
-      searchTerm
+  const filteredAndSortedTasks = tasks
+    .filter(({ text, startDay, endDay }) =>
+      isAnySearchTermMatch(
+        [text, formatDate(startDay), formatDate(endDay)],
+        searchTerm
+      )
     )
-  );
+    .sort((a, b) => {
+      if (a.id === 0 || b.id === 0) {
+        return -1;
+      }
 
-  const tasksColumns: ColumnData[] = [
-    {
-      iconId: "happy",
-      isAddable: true,
-      tasks: filteredBySearchTermTasks.filter(task => task.type === "todo"),
-      title: "To Do",
-      id: "todo",
-    },
-    {
-      iconId: "smile",
-      tasks: filteredBySearchTermTasks.filter(
-        task => task.type === "in_progress"
-      ),
-      title: "In Progress",
-      id: "in_progress",
-    },
-    {
-      iconId: "upside-down",
-      tasks: filteredBySearchTermTasks.filter(task => task.type === "review"),
-      title: "Review",
-      id: "review",
-    },
-    {
-      iconId: "ghost",
-      tasks: filteredBySearchTermTasks.filter(task => task.type === "done"),
-      title: "Done",
-      id: "done",
-    },
-  ];
+      return a.startDay - b.startDay;
+    });
 
-  const onDragEnd = ({ destination, draggableId, source }: DropResult) => {
+  const onDragEnd = ({ destination, source }: DropResult) => {
     if (!destination || destination.droppableId === source.droppableId) {
       return;
     }
@@ -60,7 +38,9 @@ export const TaskColumns = () => {
     const column = tasksColumns.find(
       column => column.id === source.droppableId
     )!;
-    const task = column.tasks.find((_, index) => index === source.index)!;
+    const task = filteredAndSortedTasks
+      .filter(task => task.type === column.id)
+      .find((_, index) => index === source.index)!;
 
     dispatch(
       editTask({ ...task, type: destination.droppableId as TaskTypeValues })
@@ -71,7 +51,13 @@ export const TaskColumns = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={s.tasksColumns}>
         {tasksColumns.map(column => (
-          <TaskColumn key={column.title} {...column} />
+          <TaskColumn
+            key={column.title}
+            tasks={filteredAndSortedTasks.filter(
+              task => task.type === column.id
+            )}
+            {...column}
+          />
         ))}
       </div>
     </DragDropContext>
