@@ -26,7 +26,8 @@
 
 - React
 - TypeScript
-- RTK
+- Redux Toolkit
+- React Beautiful Dnd
 - Scss
 - React Hook Form
 - Zod

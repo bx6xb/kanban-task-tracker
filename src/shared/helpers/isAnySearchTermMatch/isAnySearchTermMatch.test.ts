@@ -22,7 +22,7 @@ test("should match by end day", () => {
   expect(result).toBeTruthy();
 });
 
-test("should match by text ignore casing", () => {
+test("should match by text, ignore casing", () => {
   const searchTerm = "обновить";
 
   const result = isAnySearchTermMatch(values, searchTerm);

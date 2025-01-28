@@ -8,9 +8,9 @@ export const Search = () => {
   const dispatch = useAppDispatch();
 
   const onValueChange = (e: ChangeEvent<HTMLInputElement>) =>
-    dispatch(setSearchTerm(e.currentTarget.value));
+    dispatch(setSearchTerm({ searchTerm: e.currentTarget.value }));
 
-  const clearInput = () => dispatch(setSearchTerm(""));
+  const clearInput = () => dispatch(setSearchTerm({ searchTerm: "" }));
 
   return (
     <div className={s.container}>

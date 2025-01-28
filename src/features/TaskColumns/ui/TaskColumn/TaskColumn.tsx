@@ -9,7 +9,7 @@ type Props = ColumnData;
 export const TaskColumn = ({ iconId, isAddable, tasks, title, id }: Props) => {
   const dispatch = useAppDispatch();
 
-  const addTaskCallback = () => dispatch(addTask());
+  const addTaskHandler = () => dispatch(addTask());
 
   const isNewTaskExist = tasks.some(task => task.id === 0);
 
@@ -26,7 +26,7 @@ export const TaskColumn = ({ iconId, isAddable, tasks, title, id }: Props) => {
             {isAddable && (
               <span
                 className={clsx(s.add, isNewTaskExist && s.disabled)}
-                onClick={addTaskCallback}
+                onClick={addTaskHandler}
               >
                 + Добавить
               </span>

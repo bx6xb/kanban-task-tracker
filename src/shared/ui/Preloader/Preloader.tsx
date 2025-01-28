@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import s from "./Preloader.module.scss";
+import clsx from "clsx";
 
 type Props = {
   isHidden?: boolean;

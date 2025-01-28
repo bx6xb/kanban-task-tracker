@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { api } from "../api";
-import tasksData from "./tasks.json";
 import { TaskType, TasksState } from "./types";
 import { generateNumericId } from "../../../shared";
 
@@ -10,17 +9,11 @@ export const tasksSlice = createSlice({
   initialState,
   name: "tasksState",
   reducers: {
-    setSearchTerm(state, action: PayloadAction<string>) {
-      state.searchTerm = action.payload;
+    setSearchTerm(state, action: PayloadAction<{ searchTerm: string }>) {
+      state.searchTerm = action.payload.searchTerm;
     },
     loadTasks(state) {
-      const tasks = api.loadTasks();
-
-      if (tasks.length === 0) {
-        state.tasks = tasksData as TaskType[];
-      } else {
-        state.tasks = tasks;
-      }
+      state.tasks = api.loadTasks();
     },
     addTask(state) {
       state.tasks.push({
@@ -31,11 +24,11 @@ export const tasksSlice = createSlice({
         text: "~Ваше описание~",
       });
     },
-    editTask(state, action: PayloadAction<TaskType>) {
+    editTask(state, action: PayloadAction<{ task: TaskType }>) {
       state.tasks = state.tasks.map(task =>
-        task.id === action.payload.id
+        task.id === action.payload.task.id
           ? {
-              ...action.payload,
+              ...action.payload.task,
               id: task.id || generateNumericId(),
             }
           : task
@@ -43,8 +36,8 @@ export const tasksSlice = createSlice({
 
       api.saveTasks(state.tasks);
     },
-    removeTask(state, action: PayloadAction<number>) {
-      state.tasks = state.tasks.filter(task => task.id !== action.payload);
+    removeTask(state, action: PayloadAction<{ id: number }>) {
+      state.tasks = state.tasks.filter(task => task.id !== action.payload.id);
 
       api.saveTasks(state.tasks);
     },

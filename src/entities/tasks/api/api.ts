@@ -1,8 +1,13 @@
 import { TaskType } from "../model";
+import tasksData from "./tasks.json";
+
+const localStorageKey = "tasks";
 
 export const api = {
-  loadTasks: (): TaskType[] =>
-    JSON.parse(localStorage.getItem("tasks") || "[]"),
+  loadTasks: (): TaskType[] => {
+    const data = localStorage.getItem(localStorageKey);
+    return data ? JSON.parse(data) : (tasksData as TaskType[]);
+  },
   saveTasks: (tasks: TaskType[]): void =>
-    localStorage.setItem("tasks", JSON.stringify(tasks)),
+    localStorage.setItem(localStorageKey, JSON.stringify(tasks)),
 };

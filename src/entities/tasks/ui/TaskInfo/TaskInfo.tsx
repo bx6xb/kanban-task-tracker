@@ -1,30 +1,25 @@
 import s from "./TaskInfo.module.scss";
 import clsx from "clsx";
-import { removeTask, TaskType } from "../../model";
-import {
-  formatDate,
-  Icon,
-  isDateExpired,
-  useAppDispatch,
-} from "../../../../shared";
+import { TaskType } from "../../model";
+import { formatDate, Icon, isDateExpired } from "../../../../shared";
 
 type Props = {
   isEditable?: boolean;
   toggleEditMode(): void;
+  removeTask(id: number): void;
 } & TaskType;
 
 export const TaskInfo = ({
   endDay,
   id,
-  isEditable,
   startDay,
   text,
-  toggleEditMode,
   type,
+  isEditable,
+  toggleEditMode,
+  removeTask,
 }: Props) => {
-  const dispatch = useAppDispatch();
-
-  const removeTaskCallback = () => dispatch(removeTask(id));
+  const removeTaskHandler = () => removeTask(id);
 
   return (
     <>
@@ -58,7 +53,7 @@ export const TaskInfo = ({
           </button>
         )}
 
-        <button onClick={removeTaskCallback} type={"button"}>
+        <button onClick={removeTaskHandler} type={"button"}>
           <Icon className={s.trash} height={18} id={"trash"} width={18} />
         </button>
       </div>

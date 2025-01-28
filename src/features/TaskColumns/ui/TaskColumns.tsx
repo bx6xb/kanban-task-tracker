@@ -43,7 +43,12 @@ export const TaskColumns = () => {
       .find((_, index) => index === source.index)!;
 
     dispatch(
-      editTask({ ...task, type: destination.droppableId as TaskTypeValues })
+      editTask({
+        task: {
+          ...task,
+          type: destination.droppableId as TaskTypeValues,
+        },
+      })
     );
   };
 

@@ -1,17 +1,11 @@
 import s from "./TaskForm.module.scss";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { editTask, TaskType, taskFormSchema, removeTask } from "../../model";
-import {
-  convertDateToMs,
-  formatDate,
-  Icon,
-  Input,
-  useAppDispatch,
-} from "../../../../shared";
+import { TaskType, taskFormSchema } from "../../model";
+import { formatDate, Icon, Input } from "../../../../shared";
 
-type FormValues = {
+export type FormValues = {
   endDay: string;
   startDay: string;
   text: string;
@@ -19,17 +13,18 @@ type FormValues = {
 
 type Props = {
   onCrossClick(): void;
-  onSubmit(): void;
+  onSubmit(data: FormValues): void;
+  removeTask(id: number): void;
 } & TaskType;
 
 export const TaskForm = ({
   endDay,
   id,
-  onCrossClick,
-  onSubmit,
   startDay,
   text,
-  type,
+  removeTask,
+  onCrossClick,
+  onSubmit,
 }: Props) => {
   const {
     formState: { errors },
@@ -44,35 +39,13 @@ export const TaskForm = ({
     resolver: zodResolver(taskFormSchema),
   });
 
-  const dispatch = useAppDispatch();
-
-  const onSubmitHandler: SubmitHandler<FormValues> = ({
-    endDay,
-    startDay,
-    text,
-  }) => {
-    dispatch(
-      editTask({
-        endDay: convertDateToMs(endDay),
-        id,
-        startDay: convertDateToMs(startDay),
-        text,
-        type,
-      })
-    );
-
-    onSubmit();
-  };
-
-  const removeTaskCallback = () => {
-    dispatch(removeTask(id));
-  };
+  const removeTaskHandler = () => removeTask(id);
 
   const startDayError = errors.startDay?.message;
   const endDayError = errors.endDay?.message;
 
   return (
-    <form className={s.form} onSubmit={handleSubmit(onSubmitHandler)}>
+    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={"rowContainer"}>
         <label className={"row"}>
           Начало:
@@ -102,7 +75,7 @@ export const TaskForm = ({
 
       <div className={s.editButtons}>
         <button
-          onClick={id === 0 ? removeTaskCallback : onCrossClick}
+          onClick={id === 0 ? removeTaskHandler : onCrossClick}
           type={"button"}
         >
           <Icon className={s.cross} height={24} id={"cross"} width={24} />
