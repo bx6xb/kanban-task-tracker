@@ -61,9 +61,12 @@
   gap: 8.5px;
 }
 
+label.row {
+  align-items: center;
+}
+
 .row {
   display: flex;
-  align-items: center;
   gap: 16px;
   font-size: 14px;
   color: var(--text-regular);
