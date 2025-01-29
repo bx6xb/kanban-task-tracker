@@ -52,6 +52,7 @@ export const TaskForm = ({
           <Input
             {...register("startDay")}
             className={clsx(s.input, startDayError && s.error)}
+            placeholder="дд.мм.гггг"
           />
         </label>
         {!!startDayError && (
@@ -63,13 +64,18 @@ export const TaskForm = ({
           <Input
             {...register("endDay")}
             className={clsx(s.input, endDayError && s.error)}
+            placeholder="дд.мм.гггг"
           />
         </label>
         {!!endDayError && <span className={s.errorMessage}>{endDayError}</span>}
 
         <label className={"row"}>
           Описание:
-          <Input {...register("text")} className={s.input} />
+          <Input
+            {...register("text")}
+            className={s.input}
+            placeholder="Описание задачи"
+          />
         </label>
       </div>
 

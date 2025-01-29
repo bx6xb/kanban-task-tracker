@@ -21,7 +21,7 @@ export const tasksSlice = createSlice({
         type: "todo",
         startDay: new Date().getTime(),
         endDay: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
-        text: "~Ваше описание~",
+        text: "",
       });
     },
     editTask(state, action: PayloadAction<{ task: TaskType }>) {
