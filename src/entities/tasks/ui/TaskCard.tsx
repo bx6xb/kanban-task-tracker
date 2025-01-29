@@ -1,7 +1,7 @@
 import "./TaskCard.scss";
 import { useState } from "react";
-import { editTask, removeTask, TaskType } from "../model";
-import { FormValues, TaskForm } from "./TaskForm";
+import { editTask, TaskFormValues, removeTask, TaskType } from "../model";
+import { TaskForm } from "./TaskForm";
 import { TaskInfo } from "./TaskInfo";
 import { Draggable } from "react-beautiful-dnd";
 import { convertDateToMs, useAppDispatch } from "../../../shared";
@@ -20,7 +20,7 @@ export const TaskCard = ({ isEditable, index, ...task }: Props) => {
 
   const removeTaskHandler = (id: number) => dispatch(removeTask({ id }));
 
-  const onSubmit = ({ endDay, startDay, text }: FormValues) => {
+  const onSubmit = ({ endDay, startDay, text }: TaskFormValues) => {
     dispatch(
       editTask({
         task: {

@@ -2,18 +2,13 @@ import s from "./TaskForm.module.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { TaskType, taskFormSchema } from "../../model";
+import { TaskFormValues, TaskType, taskFormSchema } from "../../model";
 import { formatDate, Icon, Input } from "../../../../shared";
-
-export type FormValues = {
-  endDay: string;
-  startDay: string;
-  text: string;
-};
+import { getInputData } from "../../lib";
 
 type Props = {
   onCrossClick(): void;
-  onSubmit(data: FormValues): void;
+  onSubmit(data: TaskFormValues): void;
   removeTask(id: number): void;
 } & TaskType;
 
@@ -30,7 +25,7 @@ export const TaskForm = ({
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<TaskFormValues>({
     defaultValues: {
       endDay: formatDate(endDay),
       startDay: formatDate(startDay),
@@ -47,36 +42,19 @@ export const TaskForm = ({
   return (
     <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={"rowContainer"}>
-        <label className={"row"}>
-          Начало:
-          <Input
-            {...register("startDay")}
-            className={clsx(s.input, startDayError && s.error)}
-            placeholder="дд.мм.гггг"
-          />
-        </label>
-        {!!startDayError && (
-          <span className={s.errorMessage}>{startDayError}</span>
+        {getInputData(startDayError, endDayError).map(
+          ({ errorMessage, label, name, placeholder }) => (
+            <Input
+              key={name}
+              {...register(name as keyof TaskFormValues)}
+              label={label}
+              errorMessage={errorMessage}
+              labelClassName={"row"}
+              className={clsx(s.input, errorMessage && s.error)}
+              placeholder={placeholder}
+            />
+          )
         )}
-
-        <label className={"row"}>
-          Окончание:
-          <Input
-            {...register("endDay")}
-            className={clsx(s.input, endDayError && s.error)}
-            placeholder="дд.мм.гггг"
-          />
-        </label>
-        {!!endDayError && <span className={s.errorMessage}>{endDayError}</span>}
-
-        <label className={"row"}>
-          Описание:
-          <Input
-            {...register("text")}
-            className={s.input}
-            placeholder="Описание задачи"
-          />
-        </label>
       </div>
 
       <div className={s.editButtons}>

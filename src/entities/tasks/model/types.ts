@@ -12,3 +12,9 @@ export type TaskType = {
   text: string;
   type: TaskTypeValues;
 };
+
+export type TaskFormValues = {
+  endDay: string;
+  startDay: string;
+  text: string;
+};
