@@ -33,6 +33,16 @@
         height: 20px;
       }
     }
+
+    @media (width <= 768px) {
+      width: 30px;
+      height: 30px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
   }
 }
 
