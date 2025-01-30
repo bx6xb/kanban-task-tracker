@@ -79,6 +79,10 @@ label.row {
     &.expired {
       color: var(--red);
     }
+
+    &.text {
+      word-break: break-word;
+    }
   }
 
   @media (width <= 1440px) {

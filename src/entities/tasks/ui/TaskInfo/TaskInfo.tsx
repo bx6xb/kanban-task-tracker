@@ -1,7 +1,7 @@
 import s from "./TaskInfo.module.scss";
-import clsx from "clsx";
 import { TaskType } from "../../model";
-import { formatDate, Icon, isDateExpired } from "../../../../shared";
+import { Icon } from "../../../../shared";
+import { getTaskInfoData } from "../../lib";
 
 type Props = {
   isEditable?: boolean;
@@ -24,26 +24,14 @@ export const TaskInfo = ({
   return (
     <>
       <div className={"rowContainer"}>
-        <div className={"row"}>
-          Начало:
-          <span>{formatDate(startDay)}</span>
-        </div>
-
-        <div className={"row"}>
-          Окончание:
-          <span
-            className={clsx(
-              isDateExpired(endDay) && type !== "done" && "expired"
-            )}
-          >
-            {formatDate(endDay)}
-          </span>
-        </div>
-
-        <div className={"row"}>
-          Описание:
-          <span className={s.text}>{text}</span>
-        </div>
+        {getTaskInfoData({ startDay, endDay, type, text }).map(
+          ({ label, children, className }) => (
+            <div className={"row"} key={label}>
+              {label}
+              <span className={className}>{children}</span>
+            </div>
+          )
+        )}
       </div>
 
       <div className={"options"}>

@@ -1,16 +1,18 @@
 import { TaskFormValues } from "../model";
 
+type Return = {
+  label: string;
+  name: keyof TaskFormValues;
+  errorMessage?: string;
+  placeholder: string;
+}[];
+
 const datePlaceholder = "дд.мм.гггг";
 
 export const getInputData = (
   startDayError?: string,
   endDayError?: string
-): {
-  label: string;
-  name: keyof TaskFormValues;
-  errorMessage?: string;
-  placeholder: string;
-}[] => [
+): Return => [
   {
     label: "Начало:",
     name: "startDay",
